@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Vue Mastery</title>
+    <!-- Import Styles -->
+    <link rel="stylesheet" href="assets/style.css" />
+    <!-- Import Vue.js -->
+    <!--<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>-->
+    <script src="./js/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="nav-bar"></div>
+        <div class="product-display">
+            <div class="product-container">
+                <div class="product-image">
+                    <img :src="imageLink" :alt="product">
+                </div>
+                <div class="product-info">
+                    <h1>{{title}}</h1>
+                    <h2> {{"prix :"+price+"dt"}}</h2>
+                    <p>{{descripition}}</p>
+
+                    <!--<h1>{{hkimi}}</h1>
+                    <input type="text" v-model="hkimi">
+                    <h1>{{checked}}</h1>
+                    <input type="checkbox" value="hdhd" v-model="checked">
+                    <input type="checkbox" value="ffd" v-model="checked">
+                    <input type="checkbox" value="hddfdfhd" v-model="checked">
+                    <p v-html="content_html"></p>
+                    <button :disabled="count==3" @click="count++">incrementer</button> {{count}}-->
+                    <div class="cart">
+                        cart {{cart}}
+                    </div>
+
+                    <a :href="link">here to open the link</a>
+                    <p v-if="inventory <=  10 && inventory > 0">presque en repture de stock </p>
+                    <p v-else-if="inventory == 0"> en repture de stock</p>
+                    <p v-else> en stock</p>
+                    <p v-if="onsale">en vente</p>
+                    <ul>
+                        <li v-for="detail in details">{{detail}}</li>
+                    </ul>
+                    <ul style="display:flex">
+                        <li v-for="(variant,index) in variants" :key="variant.id">
+                            <button v-bind:style="{backgroundColor:variant.color,...style}" @mouseover="selectVarient(index)" class="color-circle">{{variant.color}}</button>
+                        </li>
+
+                    </ul>
+                    <select>
+                        <option v-for="size in sizes" >{{size}}</option>
+                    </select><br>
+                    <button class="button" @click="AddToCart" :class="{ disabledButton: !in_stock }" :disabled="!in_stock">add to cart</button>
+                    <button class="button" @click="RemoveFromCart">remove from cart</button>
+                    <!--<p v-show="in_stock">en stock </p>-->
+                </div>
+            </div>
+        </div>
+
+        <!--<h1>{{product.toUpperCase()}}</h1>
+        <h2>prix : {{price}}dt</h2>
+        <p>{{descripition}}</p>
+        <img src="./assets/images/socks_blue.jpg" v-bind:alt="product">-->
+
+    </div>
+
+    <!-- Import Js -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
