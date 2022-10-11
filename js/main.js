@@ -17,22 +17,29 @@ const app = Vue.createApp({
             onsale: true,
             details: ['50% coton', '30% laine', '20% polyster'],
             variants: [
-                { id: 2001, color: "green", src: "assets/images/socks_green.jpg", quantity: 12 },
-                { id: 2002, color: "blue", src: "assets/images/socks_blue.jpg", quantity: 12 },
+                { id: 2001, color: "green", src: "assets/images/socks_green.jpg", quantity: 12, size: 0 },
+                { id: 2002, color: "blue", src: "assets/images/socks_blue.jpg", quantity: 12, size: 0 },
             ],
+            show: false,
+            purchases: [],
             sizes: [41, 42, 43, 44, 45, 47],
             cart: 0,
             selected: 0,
+            message: "",
         }
     },
     methods: {
         AddToCart() {
             /*if (!this.Checkquantity) */
             this.cart++;
+            this.message = "this item is added to cart";
+            this.show = true;
         },
         RemoveFromCart() {
             if (this.cart > 0) {
                 this.cart--;
+                this.message = "this item is removed from the cart";
+                this.show = true;
             }
         },
         selectVarient(id) {
@@ -42,6 +49,13 @@ const app = Vue.createApp({
             if (quantity == 0) {
                 return false;
             }
+        },
+        selectSize(size) {
+            if (!this.purchases.find(x => x.id == this.variants[this.selected].id)) {
+                this.purchases.push(this.variants[this.selected]);
+            }
+            console.log(this.purchases[this.purchases.find(x => x.id == this.variants[this.selected].id)]);
+            this.purchases[this.purchases.find(x => x.id == this.variants[this.selected].id)].size = size;
         }
     },
     computed: {

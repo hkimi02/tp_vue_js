@@ -14,6 +14,7 @@
 <body>
     <div id="app">
         <div class="nav-bar"></div>
+
         <div class="cart">
             cart {{cart}}
         </div>
@@ -37,12 +38,12 @@
                     </ul>
                     <ul style="display:flex">
                         <li v-for="(variant,index) in variants" :key="variant.id">
-                            <button v-bind:style="{backgroundColor:variant.color,...style}" @mouseover="selectVarient(index)" class="color-circle">{{variant.color}}</button>
+                            <button v-bind:style="{backgroundColor:variant.color,...style}" @mouseover="selectVarient(index)" class="color-circle"></button>
                         </li>
 
                     </ul>
                     <div class="sizes">
-                        <span v-for="size in sizes"><center>{{size}}</center></span>
+                        <span v-for="(size,index) in sizes" @click="selectSize(size)"><center>{{size}}</center></span>
                     </div><br>
                     <button class="button success" @click="AddToCart" :class="{ disabledButton: !in_stock }" :disabled="!in_stock">add to cart</button>
                     <button class="button danger" @click="RemoveFromCart">remove from cart</button>
@@ -55,7 +56,10 @@
         <h2>prix : {{price}}dt</h2>
         <p>{{descripition}}</p>
         <img src="./assets/images/socks_blue.jpg" v-bind:alt="product">-->
-
+        <div class="alert" v-if="show==true">
+            <span @click="show=false">X</span>
+            <h3>{{message}}</h3>
+        </div>
     </div>
 
     <!-- Import Js -->

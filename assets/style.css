@@ -156,11 +156,11 @@ textarea {
 }
 
 .success {
-    background-color: #41f17f;
+    background-color: green;
 }
 
 .danger {
-    background-color: #ff7782;
+    background-color: red;
 }
 
 ul {
@@ -191,6 +191,25 @@ ul {
 .sizes {
     display: flex;
     flex-wrap: nowrap;
+}
+
+.alert {
+    height: 10rem;
+    width: 20rem;
+    z-index: 7;
+    margin-top: -50%;
+    background-color: #fff;
+    margin-left: 40%;
+    border-radius: 1.2rem;
+    transition: all 300ms ease;
+    box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
+    position: absolute;
+}
+
+.alert span {
+    color: red;
+    margin-left: 90%;
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 600px) {
