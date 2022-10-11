@@ -18,52 +18,31 @@
         <div class="cart">
             cart {{cart}}
         </div>
-        <div class="product-display">
-            <div class="product-container">
-                <div class="product-image">
-                    <img :src="imageLink" :alt="product" alt="">
-                </div>
-                <div class="product-info">
-                    <h1>{{title}}</h1>
-                    <h2> {{"prix :"+price+"dt"}}</h2>
-                    <p>{{descripition}}</p>
-
-                    <a :href="link">here to open the link</a>
-                    <p v-if="inventory <=  10 && inventory > 0">presque en repture de stock </p>
-                    <p v-else-if="inventory == 0"> en repture de stock</p>
-                    <p v-else> en stock</p>
-                    <p v-if="onsale">en vente</p>
-                    <ul>
-                        <li v-for="detail in details">{{detail}}</li>
-                    </ul>
-                    <ul style="display:flex">
-                        <li v-for="(variant,index) in variants" :key="variant.id">
-                            <button v-bind:style="{backgroundColor:variant.color,...style}" @mouseover="selectVarient(index)" class="color-circle"></button>
-                        </li>
-
-                    </ul>
-                    <div class="sizes">
-                        <span v-for="(size,index) in sizes" @click="selectSize(size)"><center>{{size}}</center></span>
-                    </div><br>
-                    <button class="button success" @click="AddToCart" :class="{ disabledButton: !in_stock }" :disabled="!in_stock">add to cart</button>
-                    <button class="button danger" @click="RemoveFromCart">remove from cart</button>
-                    <!--<p v-show="in_stock">en stock </p>-->
+        <product-display :premium="premium" :cart="cart" @add-to-cart="AddToCart" :details="details" @remove-from-cart="RemoveFrom"></product-display>
+        <!--<h1>{{product.toUpperCase()}}</h1>
+            <h2>prix : {{price}}dt</h2>
+            <p>{{descripition}}</p>
+            <img src="./assets/images/socks_blue.jpg " v-bind:alt="product ">-->
+        <!--<div class="alert " v-if="show==true ">
+            <span @click="show=false ">X</span>
+            <h3 v-if="show_purchases==false ">{{message}}</h3>
+            <div v-else>
+                <div v-for="purshase in purshases ">
+                    <h3>{{purshase.name}}</h3>
+                    <img :src="purshase.image " alt=" ">
+                    <h3>{{"size : "+size}}</h3>
                 </div>
             </div>
-        </div>
-
-        <!--<h1>{{product.toUpperCase()}}</h1>
-        <h2>prix : {{price}}dt</h2>
-        <p>{{descripition}}</p>
-        <img src="./assets/images/socks_blue.jpg" v-bind:alt="product">-->
-        <div class="alert" v-if="show==true">
-            <span @click="show=false">X</span>
-            <h3>{{message}}</h3>
-        </div>
+        </div>-->
     </div>
 
     <!-- Import Js -->
-    <script src="js/main.js"></script>
+    <script src="js/main.js "></script>
+    <script src="./components/productDisplay.js "></script>
+    <script src="./components/ProductDetails.js"></script>
+    <script>
+        const mountedApp = app.mount("#app ");
+    </script>
 </body>
 
 </html>
