@@ -84,11 +84,7 @@ app.component('product-display', {
             console.table(this.purchases);
         },
         RemoveFromCart() {
-            if (this.cart > 0) {
-                this.cart--;
-                this.message = "this item is removed from the cart";
-                this.show = true;
-            }
+            this.$emit("remove-from-cart");
         },
         selectVarient(id) {
             this.selected = id;

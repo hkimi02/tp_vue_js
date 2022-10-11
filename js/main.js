@@ -22,6 +22,13 @@ const app = Vue.createApp({
             this.show = true;
             this.AddToCartWithPrice;*/
         },
+        RemoveFromCart() {
+            if (this.cart > 0) {
+                this.cart--;
+                /*        this.message = "this item is removed from the cart";
+                        this.show = true;*/
+            }
+        }
         /*AddToCartWithPrice() {
             if (!this.purchases.find(x => x.id == this.variants[this.selected].id)) {
                 this.purchases.push(this.variants[this.selected]);
