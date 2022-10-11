@@ -158,6 +158,26 @@ ul {
     list-style-type: none;
 }
 
+.sizes span {
+    background: #000;
+    color: #fff;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 1.6rem;
+    text-align: center;
+    margin-left: 5%;
+    cursor: pointer;
+}
+
+.sizes span center {
+    margin-top: 30%;
+}
+
+.sizes {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
 @media only screen and (max-width: 600px) {
     .container {
         flex-direction: column;

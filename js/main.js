@@ -10,27 +10,24 @@ const app = Vue.createApp({
             hkimi: '',
             count: 0,
             checked: [],
-            //in_stock: true,
+            in_stock: true,
             inventory: 100,
-            content_html: "<small>houcein</small>",
+            //content_html: "<small>houcein</small>",
             tab: ["hdhdh", "dssd", "dssdds", "ssdd"],
             onsale: true,
             details: ['50% coton', '30% laine', '20% polyster'],
             variants: [
                 { id: 2001, color: "green", src: "assets/images/socks_green.jpg", quantity: 12 },
-                { id: 2002, color: "blue", src: "assets/images/socks_blue.jpg", quantity: 0 },
+                { id: 2002, color: "blue", src: "assets/images/socks_blue.jpg", quantity: 12 },
             ],
             sizes: [41, 42, 43, 44, 45, 47],
             cart: 0,
-            style: {
-                color: 'red',
-                fontSize: '14px'
-            },
             selected: 0,
         }
     },
     methods: {
         AddToCart() {
+            /*if (!this.Checkquantity) */
             this.cart++;
         },
         RemoveFromCart() {
@@ -40,6 +37,11 @@ const app = Vue.createApp({
         },
         selectVarient(id) {
             this.selected = id;
+        },
+        Checkquantity(quantity) {
+            if (quantity == 0) {
+                return false;
+            }
         }
     },
     computed: {

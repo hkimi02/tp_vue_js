@@ -17,21 +17,12 @@
         <div class="product-display">
             <div class="product-container">
                 <div class="product-image">
-                    <img :src="imageLink" :alt="product">
+                    <img :src="imageLink" :alt="product" alt="">
                 </div>
                 <div class="product-info">
                     <h1>{{title}}</h1>
                     <h2> {{"prix :"+price+"dt"}}</h2>
                     <p>{{descripition}}</p>
-
-                    <!--<h1>{{hkimi}}</h1>
-                    <input type="text" v-model="hkimi">
-                    <h1>{{checked}}</h1>
-                    <input type="checkbox" value="hdhd" v-model="checked">
-                    <input type="checkbox" value="ffd" v-model="checked">
-                    <input type="checkbox" value="hddfdfhd" v-model="checked">
-                    <p v-html="content_html"></p>
-                    <button :disabled="count==3" @click="count++">incrementer</button> {{count}}-->
                     <div class="cart">
                         cart {{cart}}
                     </div>
@@ -50,9 +41,9 @@
                         </li>
 
                     </ul>
-                    <select>
-                        <option v-for="size in sizes" >{{size}}</option>
-                    </select><br>
+                    <div class="sizes">
+                        <span v-for="size in sizes"><center>{{size}}</center></span>
+                    </div><br>
                     <button class="button" @click="AddToCart" :class="{ disabledButton: !in_stock }" :disabled="!in_stock">add to cart</button>
                     <button class="button" @click="RemoveFromCart">remove from cart</button>
                     <!--<p v-show="in_stock">en stock </p>-->
