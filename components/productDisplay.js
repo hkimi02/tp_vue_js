@@ -1,5 +1,6 @@
 app.component('product-display', {
     template: `
+    
     <div class="product-display">
     <div class="product-container">
         <div class="product-image">
@@ -34,6 +35,7 @@ app.component('product-display', {
         </div>
     </div>
 </div>
+<purchases-display :purchases="purchases" :show_click="show_click" @change-show-click="ChangeShowClick"></purchases-display>
 `,
     data() {
         return {
@@ -55,12 +57,11 @@ app.component('product-display', {
                 { id: 2001, color: "green", src: "assets/images/socks_green.jpg", quantity: 12, size: 0 },
                 { id: 2002, color: "blue", src: "assets/images/socks_blue.jpg", quantity: 12, size: 0 },
             ],
-            show: false,
+
             purchases: [],
             sizes: [41, 42, 43, 44, 45, 47],
             selected: 0,
-            message: "",
-            show_purchases: false,
+
         }
     },
     props: {
@@ -72,10 +73,16 @@ app.component('product-display', {
             type: Number,
         },
         details: Array,
+        show: Boolean,
+        show_click: Boolean
     },
     methods: {
         AddToCart() {
             this.$emit("add-to-cart");
+            this.AddToPurchases();
+        },
+        ChangeShowClick() {
+            this.$emit("change-show-click");
         },
         AddToCartWithPrice() {
             if (!this.purchases.find(x => x.id == this.variants[this.selected].id)) {
@@ -102,6 +109,10 @@ app.component('product-display', {
         showPurchases() {
             this.show_purchases = true;
             this.show = true;
+        },
+        AddToPurchases() {
+            this.purchases.push((this.variants[this.selected]));
+            console.table(this.purchases);
         }
     },
     computed: {

@@ -11,6 +11,7 @@ const app = Vue.createApp({
             selected: 0,
             message: "",
             show_purchases: false,*/
+            show_click: false
         }
     },
     methods: {
@@ -28,7 +29,11 @@ const app = Vue.createApp({
                 /*        this.message = "this item is removed from the cart";
                         this.show = true;*/
             }
+        },
+        ChangeShowClick() {
+            this.show_click = false;
         }
+
         /*AddToCartWithPrice() {
             if (!this.purchases.find(x => x.id == this.variants[this.selected].id)) {
                 this.purchases.push(this.variants[this.selected]);
@@ -62,7 +67,7 @@ const app = Vue.createApp({
     },
     computed: {
         /*imageLink() {
-             return this.in_stock ? this.variants[this.selected].src : 'assets/images/out-of-stock-img.png';
+            return this.in_stock ? this.variants[this.selected].src : 'assets/images/out-of-stock-img.png';
          },
          title() {
              return this.brand + " " + this.product;

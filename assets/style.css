@@ -194,16 +194,20 @@ ul {
 }
 
 .alert {
-    height: 10rem;
-    width: 20rem;
-    z-index: 7;
+    height: 60rem;
+    width: 60rem;
+    z-index: 999999999999999999;
     margin-top: -50%;
     background-color: #fff;
-    margin-left: 40%;
+    margin-left: 10%;
     border-radius: 1.2rem;
     transition: all 300ms ease;
     box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
     position: absolute;
+}
+
+opacity {
+    opacity: 0.2;
 }
 
 .alert span {

@@ -15,31 +15,23 @@
     <div id="app">
         <div class="nav-bar"></div>
 
-        <div class="cart">
+        <div class="cart" @click="show_click=true">
             cart {{cart}}
         </div>
-        <product-display :premium="premium" :cart="cart" @add-to-cart="AddToCart" :details="details" @remove-from-cart="RemoveFromCart"></product-display>
+        <product-display :premium="premium" :cart="cart" @add-to-cart="AddToCart" :details="details" @remove-from-cart="RemoveFromCart" :show_click="show_click" @change-show-click="ChangeShowClick" :class="{opacity : show_click}"></product-display>
         <!--<h1>{{product.toUpperCase()}}</h1>
             <h2>prix : {{price}}dt</h2>
             <p>{{descripition}}</p>
             <img src="./assets/images/socks_blue.jpg " v-bind:alt="product ">-->
-        <!--<div class="alert " v-if="show==true ">
-            <span @click="show=false ">X</span>
-            <h3 v-if="show_purchases==false ">{{message}}</h3>
-            <div v-else>
-                <div v-for="purshase in purshases ">
-                    <h3>{{purshase.name}}</h3>
-                    <img :src="purshase.image " alt=" ">
-                    <h3>{{"size : "+size}}</h3>
-                </div>
-            </div>
+        <!--
         </div>-->
     </div>
 
     <!-- Import Js -->
     <script src="js/main.js "></script>
-    <script src="./components/productDisplay.js "></script>
+    <script src="./components/productDisplay.js"></script>
     <script src="./components/ProductDetails.js"></script>
+    <script src="./components/PurchasesDisplay.js"></script>
     <script>
         const mountedApp = app.mount("#app ");
     </script>
