@@ -1,13 +1,15 @@
 app.component('purchases-display', {
     template: `
     <div class="alert" v-if="show_click==true">
-            <span @click="ChangeShowClick">X</span>
-            <!--<h3 v-if="show_purchases==false ">{{message}}</h3>-->
-            <button @click="showPurchases">show</button>
-                <div v-for="purchase in purchases">
-                    
+    <span class="material-symbols-sharp" @click="ChangeShowClick">close</span>
+            <h3 v-if="purshases==[] ">you havent buy anything yet </h3>
+                <div v-for="purchase in purchases" class="purshase-display">
                     <img :src="purchase.src" alt=" ">
+                    <div>
+                    <h3>{{purchase.name}}</h3>
                     <h3>{{"size : " + purchase.size}}</h3>
+                    <hr>
+                    </div>
                 </div>
             
             </div>`,

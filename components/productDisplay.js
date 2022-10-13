@@ -1,6 +1,5 @@
 app.component('product-display', {
     template: `
-    
     <div class="product-display">
     <div class="product-container">
         <div class="product-image">
@@ -23,13 +22,12 @@ app.component('product-display', {
                 <li v-for="(variant,index) in variants" :key="variant.id">
                     <button v-bind:style="{backgroundColor:variant.color}" @mouseover="selectVarient(index)" class="color-circle"></button>
                 </li>
-
             </ul>
             <div class="sizes">
-                <span v-for="(size,index) in sizes" @click="selectSize(size)" style="display:flex;text-align:center;justify-content:center;align-items:center">{{size}}</span>
+                <button v-for="(size,index) in sizes" @click="selectSize(size)" style="display:flex;text-align:center;justify-content:center;align-items:center" :class="{ disabledButton: show_click }" :disabled="show_click">{{size}}</button>
             </div><br>
-            <button class="button success" @click="AddToCart" :class="{ disabledButton: !in_stock }" :disabled="!in_stock">add to cart</button>
-            <button class="button danger" @click="RemoveFromCart">remove from cart</button>
+            <button class="button success" @click="AddToCart" :class="{ disabledButton: show_click }" :disabled="show_click">add to cart</button>
+            <button class="button danger" @click="RemoveFromCart" :class="{ disabledButton: show_click }" :disabled="show_click">remove from cart</button>
             <p>expedition :{{premium ? "free" : "2.99"}}</p>
             <!--<p v-show="in_stock">en stock </p>-->
         </div>
@@ -54,8 +52,8 @@ app.component('product-display', {
             onsale: true,
             /*details: ['50% coton', '30% laine', '20% polyster'],*/
             variants: [
-                { id: 2001, color: "green", src: "assets/images/socks_green.jpg", quantity: 12, size: 0 },
-                { id: 2002, color: "blue", src: "assets/images/socks_blue.jpg", quantity: 12, size: 0 },
+                { id: 2001, name: "vue js socks", price: 23.999, color: "green", src: "assets/images/socks_green.jpg", quantity: 12, size: 0 },
+                { id: 2002, name: "vue js socks", price: 23.999, color: "blue", src: "assets/images/socks_blue.jpg", quantity: 12, size: 0 },
             ],
 
             purchases: [],
