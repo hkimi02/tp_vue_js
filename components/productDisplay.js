@@ -109,8 +109,12 @@ app.component('product-display', {
             this.show = true;
         },
         AddToPurchases() {
+            console.log(this.purchases.indexOf(this.variants[this.selected]));
+            /* if (this.purchases.find(this.variants[this.selected])) {
+                (this.purchases.indexOf(this.variants[this.selected]).quantity) ++;
+            } else {*/
             this.purchases.push((this.variants[this.selected]));
-            console.table(this.purchases);
+            //}
         }
     },
     computed: {
