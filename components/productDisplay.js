@@ -52,13 +52,14 @@ app.component('product-display', {
             onsale: true,
             /*details: ['50% coton', '30% laine', '20% polyster'],*/
             variants: [
-                { id: 2001, name: "vue js socks", price: 23.999, color: "green", src: "assets/images/socks_green.jpg", quantity: 12, size: 0 },
-                { id: 2002, name: "vue js socks", price: 23.999, color: "blue", src: "assets/images/socks_blue.jpg", quantity: 12, size: 0 },
+                { id: 2001, name: "vue js socks", price: 23.999, color: "green", src: "assets/images/socks_green.jpg", quantity: 0, size: 0 },
+                { id: 2002, name: "vue js socks", price: 23.999, color: "blue", src: "assets/images/socks_blue.jpg", quantity: 0, size: 0 },
             ],
 
             purchases: [],
             sizes: [41, 42, 43, 44, 45, 47],
             selected: 0,
+            SelectedSize: 0,
 
         }
     },
@@ -82,39 +83,53 @@ app.component('product-display', {
         ChangeShowClick() {
             this.$emit("change-show-click");
         },
-        AddToCartWithPrice() {
-            if (!this.purchases.find(x => x.id == this.variants[this.selected].id)) {
-                this.purchases.push(this.variants[this.selected]);
-            }
-            console.table(this.purchases);
-        },
         RemoveFromCart() {
             this.$emit("remove-from-cart");
         },
         selectVarient(id) {
             this.selected = id;
         },
-        Checkquantity(quantity) {
-            if (quantity == 0) {
-                return false;
-            }
-        },
-        selectSize(size) {
-            this.variants[this.selected].size = size;
-            /*
-            //this.purchases.find(x => x.id == this.variants[this.selected].id).size = size;*/
-        },
         showPurchases() {
             this.show_purchases = true;
             this.show = true;
         },
         AddToPurchases() {
-            console.log(this.purchases.indexOf(this.variants[this.selected]));
-            /* if (this.purchases.find(this.variants[this.selected])) {
-                (this.purchases.indexOf(this.variants[this.selected]).quantity) ++;
-            } else {*/
-            this.purchases.push((this.variants[this.selected]));
-            //}
+            let test = false;
+            let i = 0;
+            if (this.purchases.length > 0) {
+                while (test == false && i < this.purchases.length) {
+                    console.log("salem");
+                    if (this.purchases[i].id == this.variants[this.selected].id && this.purchases[i].size == this.SelectedSize) {
+                        console.log("salem 1");
+                        this.purchases[i].quantity++;
+                        test = true;
+                    } else {
+                        i++;
+                    }
+                }
+                if (!test) {
+                    console.log("salem 2 ");
+                    let item = this.variants[this.selected];
+                    item.quantity++;
+                    item.size = this.SelectedSize;
+                    item.id = this.purchases[this.purchases.length] + 1;
+                    this.purchases.push(item);
+                }
+            } else {
+                console.log("ki nabda feregh ");
+                let item = this.variants[this.selected];
+                item.quantity++;
+                item.size = this.SelectedSize;
+                item.id = 1;
+                this.purchases.push(item);
+            }
+
+
+            console.table(this.purchases);
+        },
+        selectSize(size) {
+            this.SelectedSize = size;
+            console.log(this.SelectedSize);
         }
     },
     computed: {
