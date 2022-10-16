@@ -20,13 +20,11 @@
         <div class="cart" @click="show_click=true">
             cart {{cart}}
         </div>
-        <product-display :premium="premium" :cart="cart" @add-to-cart="AddToCart" :details="details" @remove-from-cart="RemoveFromCart" :show_click="show_click" @change-show-click="ChangeShowClick" :class="{opacity : show_click}"></product-display>
-        <!--<h1>{{product.toUpperCase()}}</h1>
-            <h2>prix : {{price}}dt</h2>
-            <p>{{descripition}}</p>
-            <img src="./assets/images/socks_blue.jpg " v-bind:alt="product ">-->
-        <!--
-        </div>-->
+        <button class="button" @click="show_review_form=true">
+            leave us a review 
+        </button>
+        <product-display :premium="premium" :cart="cart" @add-to-cart="AddToCart" :details="details" @remove-from-cart="RemoveFromCart" :show_click="show_click" @change-show-click="ChangeShowClick" :class="{opacity : show_click}" :show_review_form="show_review_form"
+            @change-show-review-form="change_show_review_form"></product-display>
     </div>
     <!-- Import Js -->
     <script src="js/main.js "></script>
