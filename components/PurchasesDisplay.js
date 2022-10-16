@@ -7,7 +7,7 @@ app.component('purchases-display', {
                     <img :src="purchase.src" alt=" ">
                     <div>
                     <h3>{{purchase.name}}</h3>
-                    <h3>{{purchase.price}}<h3>
+                    <h3>{{purchase.price}}</h3>
                     <h3>{{"size : " + purchase.size}}</h3>
                     <h3>{{"quantity : " + purchase.quantity}}</h3>
                     <hr>

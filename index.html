@@ -23,8 +23,7 @@
         <button class="button" @click="show_review_form=true">
             leave us a review 
         </button>
-        <product-display :premium="premium" :cart="cart" @add-to-cart="AddToCart" :details="details" @remove-from-cart="RemoveFromCart" :show_click="show_click" @change-show-click="ChangeShowClick" :class="{opacity : show_click}" :show_review_form="show_review_form"
-            @change-show-review-form="change_show_review_form"></product-display>
+        <product-display :premium="premium" :cart="cart" @add-to-cart="AddToCart" :details="details" @remove-from-cart="RemoveFromCart" :show_click="show_click" @change-show-click="ChangeShowClick" :show_review_form="show_review_form" @change-show-review-form="change_show_review_form"></product-display>
     </div>
     <!-- Import Js -->
     <script src="js/main.js "></script>
