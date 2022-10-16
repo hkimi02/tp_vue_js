@@ -32,6 +32,8 @@ app.component('product-display', {
             <!--<p v-show="in_stock">en stock </p>-->
         </div>
     </div>
+    <review-list :reviews="reviews"></review-list>
+    <reveiw-form @review-submitted="addReview"></reveiw-form>
 </div>
 <purchases-display :purchases="purchases" :show_click="show_click" @change-show-click="ChangeShowClick"></purchases-display>
 `,
@@ -60,6 +62,7 @@ app.component('product-display', {
             sizes: [41, 42, 43, 44, 45, 47],
             selected: 0,
             SelectedSize: 0,
+            reviews: []
 
         }
     },
@@ -123,13 +126,14 @@ app.component('product-display', {
                 item.id = 1;
                 this.purchases.push(item);
             }
-
-
             console.table(this.purchases);
         },
         selectSize(size) {
             this.SelectedSize = size;
             console.log(this.SelectedSize);
+        },
+        addReview(review) {
+            this.reviews.push(review);
         }
     },
     computed: {
