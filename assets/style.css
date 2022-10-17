@@ -237,10 +237,21 @@ opacity {
     opacity: 0.2;
 }
 
-.alert span {
+.alert span:nth-child(1) {
     color: red;
     margin-left: 90%;
     cursor: pointer;
+}
+
+.alert div span {
+    cursor: pointer;
+    background-color: transparent;
+    margin-left: 50%;
+}
+
+.alert div span:hover {
+    background-color: transparent;
+    color: red;
 }
 
 .purshase-display img {

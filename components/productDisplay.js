@@ -105,11 +105,7 @@ app.component('product-display', {
             let i = 0;
             if (this.purchases.length > 0) {
                 while (test == false && i < this.purchases.length) {
-                    console.log("salem");
-                    console.log(this.purchases[i].variantId);
-                    console.log(this.variants[this.selected].id);
                     if (this.purchases[i].variantId == this.variants[this.selected].id && this.purchases[i].size == this.SelectedSize) {
-                        console.log("salem 1");
                         this.purchases[i].quantity++;
                         test = true;
                     } else {
@@ -117,7 +113,6 @@ app.component('product-display', {
                     }
                 }
                 if (!test) {
-                    console.log("salem 2 ");
                     let item = {...this.variants[this.selected] };
                     item.quantity = 1;
                     item.variantId = this.variants[this.selected].id;
@@ -125,15 +120,12 @@ app.component('product-display', {
                     this.purchases.push(item);
                 }
             } else {
-                console.log("ki nabda feregh ");
                 let item = {...this.variants[this.selected] };
                 item.variantId = this.variants[this.selected].id;
                 item.quantity++;
                 item.size = this.SelectedSize;
                 this.purchases.push(item);
             }
-            console.table(this.purchases);
-
         },
         selectSize(size) {
             this.SelectedSize = size;

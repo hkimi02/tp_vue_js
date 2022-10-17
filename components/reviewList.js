@@ -7,13 +7,13 @@ app.component('review-list', {
     <h3>comment</h3>
     <ul>
         <li v-for="(review,index) in reviews" :key="index">
-            {{review.name}} give us {{review.rating}} starts <br> "{{review.review}}"
+            {{review.name}} give us {{review.rating}} starts <br> "{{review.review}}" <br> recomndation : {{review.recomndation}}
         </li>
     </ul>
-    <button @click="addStarts"> show starts </button> 
+   <!-- <button @click="addStarts"> show starts </button> 
     <div style="display:flex;" v-for="star in starts">
             {{star}}
-            </div>
+            </div>-->
 </div>
 `,
     data() {

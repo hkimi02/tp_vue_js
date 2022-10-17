@@ -10,8 +10,8 @@ app.component('purchases-display', {
                     <h3>{{purchase.price}}</h3>
                     <h3>{{"size : " + purchase.size}}</h3>
                     <h3>{{"quantity : " + purchase.quantity}}</h3>
+                    <span class="material-symbols-sharp delete-button">delete</span>
                     <hr>
-                    <button class="button delete-button"><span class="material-symbols-sharp">delete</span></button>
                     </div>
                 </div>
                 <button class="success button">order now!</button>
