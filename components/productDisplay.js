@@ -32,7 +32,7 @@ app.component('product-display', {
     <review-list :reviews="reviews" v-if="reviews.length"></review-list>
     <reveiw-form @review-submitted="addReview" v-if="show_review_form" @change-show-review-form="change_show_review_form"></reveiw-form>
 </div>
-<purchases-display :purchases="purchases" :show_click="show_click" @change-show-click="ChangeShowClick" @delete-from-purchases="deleteFromPurchases(index)" @pass-confirmed-orders="passConfirmedOrders"></purchases-display>
+<purchases-display :purchases="purchases" :show_click="show_click" @change-show-click="ChangeShowClick" @delete-from-purchases="deleteFromPurchases(index)" @pass-confirmed-orders="passConfirmedOrders" @cancel-order="cancelOrder"></purchases-display>
 <connfirmed-orders :orders="orders"></connfirmed-orders>
 `,
     data() {
@@ -145,6 +145,9 @@ app.component('product-display', {
             //for (i = 0; i < this.purchases.length; i++) {
             this.orders.push({...this.purchases });
             //}
+            this.purchases = [];
+        },
+        cancelOrder() {
             this.purchases = [];
         }
     },

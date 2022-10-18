@@ -15,7 +15,7 @@ app.component('purchases-display', {
                     </div>
                 </div>
                 <button class="success button" @click="passConfirmedOrders">order now!</button>
-                <button class="danger button">cancel order</button>
+                <button class="danger button" @click="cancelOrder">cancel order</button>
             </div>`,
 
     methods: {
@@ -30,6 +30,9 @@ app.component('purchases-display', {
         },
         passConfirmedOrders() {
             this.$emit("pass-confirmed-orders");
+        },
+        cancelOrder() {
+            this.$emit("cancel-order");
         }
     },
 
