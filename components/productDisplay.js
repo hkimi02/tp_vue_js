@@ -32,7 +32,8 @@ app.component('product-display', {
     <review-list :reviews="reviews" v-if="reviews.length"></review-list>
     <reveiw-form @review-submitted="addReview" v-if="show_review_form" @change-show-review-form="change_show_review_form"></reveiw-form>
 </div>
-<purchases-display :purchases="purchases" :show_click="show_click" @change-show-click="ChangeShowClick"></purchases-display>
+<purchases-display :purchases="purchases" :show_click="show_click" @change-show-click="ChangeShowClick" @delete-from-purchases="deleteFromPurchases(index)" @pass-confirmed-orders="passConfirmedOrders"></purchases-display>
+<connfirmed-orders :orders="orders"></connfirmed-orders>
 `,
     data() {
         return {
@@ -55,8 +56,9 @@ app.component('product-display', {
             purchases: [],
             sizes: [41, 42, 43, 44, 45, 47],
             selected: 0,
-            SelectedSize: 0,
+            SelectedSize: 41,
             reviews: [],
+            orders: [],
         }
     },
     props: {
@@ -129,10 +131,17 @@ app.component('product-display', {
         },
         selectSize(size) {
             this.SelectedSize = size;
-            console.log(this.SelectedSize);
         },
         addReview(review) {
             this.reviews.push(review);
+        },
+        deleteFromPurchases(index) {
+            this.purchases.splice(index, 1);
+            this.RemoveFromCart();
+        },
+        passConfirmedOrders() {
+            this.orders = {...this.purchases };
+            this.purchases = [];
         }
     },
     computed: {
