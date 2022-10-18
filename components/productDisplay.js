@@ -1,6 +1,6 @@
 app.component('product-display', {
     template: `
-    <div class="product-display">
+    <div class="product-display" :style="{color:variants[selected].color}">
     <div class="product-container">
         <div class="product-image">
             <img :src="imageLink" :alt="product" alt="">
@@ -10,13 +10,6 @@ app.component('product-display', {
             <h2> {{"prix :"+price+"dt"}}</h2>
             <p>{{descripition}}</p>
             <product-details :details="details"></product-details>
-            <p v-if="inventory <=  10 && inventory > 0">presque en repture de stock </p>
-            <p v-else-if="inventory == 0"> en repture de stock</p>
-            <p v-else> en stock</p>
-            <p v-if="onsale">en vente</p>
-            <!-- <ul>
-                <li v-for="detail in details">{{detail}}</li>
-            </ul>-->
             <ul style="display:flex">
                 <li v-for="(variant,index) in variants" :key="variant.id">
                     <button v-bind:style="{backgroundColor:variant.color}" @mouseover="selectVarient(index)" class="color-circle"></button>
@@ -29,7 +22,7 @@ app.component('product-display', {
             <button class="button danger" @click="RemoveFromCart" :class="{ disabledButton: show_click }" :disabled="show_click">remove from cart</button>
         </div>
     </div>
-    <review-list :reviews="reviews" v-if="reviews.length"></review-list>
+    <review-list :reviews="reviews" v-if="reviews.length" class=""></review-list>
     <reveiw-form @review-submitted="addReview" v-if="show_review_form" @change-show-review-form="change_show_review_form"></reveiw-form>
 </div>
 <purchases-display :purchases="purchases" :show_click="show_click" @change-show-click="ChangeShowClick" @delete-from-purchases="deleteFromPurchases(index)" @pass-confirmed-orders="passConfirmedOrders" @cancel-order="cancelOrder"></purchases-display>
@@ -49,8 +42,8 @@ app.component('product-display', {
             tab: ["hdhdh", "dssd", "dssdds", "ssdd"],
             onsale: true,
             variants: [
-                { id: 2001, name: "vue js socks", price: 23.999, color: "green", src: "assets/images/socks_green.jpg", quantity: 0, size: 0 },
-                { id: 2002, name: "vue js socks", price: 23.999, color: "blue", src: "assets/images/socks_blue.jpg", quantity: 0, size: 0 },
+                { id: 2001, name: "vue js socks", price: 23.999, color: "green", src: "assets/images/socks_green.jpg", quantity: 0, quantity_stock: 10, size: 0 },
+                { id: 2002, name: "vue js socks", price: 23.999, color: "blue", src: "assets/images/socks_blue.jpg", quantity: 0, quantity_stock: 10, size: 0 },
             ],
 
             purchases: [],
@@ -83,8 +76,10 @@ app.component('product-display', {
     ],
     methods: {
         AddToCart() {
-            this.$emit("add-to-cart");
-            this.AddToPurchases();
+            if (this.variants[this.selected].quantity_stock > 0) {
+                this.AddToPurchases();
+                this.$emit("add-to-cart");
+            }
         },
         ChangeShowClick() {
             this.$emit("change-show-click");
@@ -105,9 +100,11 @@ app.component('product-display', {
         AddToPurchases() {
             let test = false;
             let i = 0;
+
             if (this.purchases.length > 0) {
                 while (test == false && i < this.purchases.length) {
                     if (this.purchases[i].variantId == this.variants[this.selected].id && this.purchases[i].size == this.SelectedSize) {
+                        this.variants[this.selected].quantity_stock--;
                         this.purchases[i].quantity++;
                         test = true;
                     } else {
@@ -115,19 +112,26 @@ app.component('product-display', {
                     }
                 }
                 if (!test) {
+
+                    this.variants[this.selected].quantity_stock--;
                     let item = {...this.variants[this.selected] };
                     item.quantity = 1;
                     item.variantId = this.variants[this.selected].id;
                     item.size = this.SelectedSize;
                     this.purchases.push(item);
+
                 }
             } else {
+                this.variants[this.selected].quantity_stock--;
                 let item = {...this.variants[this.selected] };
+                this.variants[this.selected].quantity_stock--;
                 item.variantId = this.variants[this.selected].id;
                 item.quantity++;
                 item.size = this.SelectedSize;
                 this.purchases.push(item);
+
             }
+
         },
         selectSize(size) {
             this.SelectedSize = size;
@@ -136,24 +140,28 @@ app.component('product-display', {
             this.reviews.push(review);
         },
         deleteFromPurchases(index) {
-            // for (i = 0; i < (this.purchases[index]).quantity; i++) {
             this.RemoveFromCart();
-            //}
             this.purchases.splice(index, 1);
         },
         passConfirmedOrders() {
-            //for (i = 0; i < this.purchases.length; i++) {
             this.orders.push({...this.purchases });
-            //}
             this.purchases = [];
+            this.initialiseCart();
         },
         cancelOrder() {
             this.purchases = [];
+        },
+        initialiseCart() {
+            this.$emit("initialise-cart");
         }
     },
     computed: {
         imageLink() {
-            return this.in_stock ? this.variants[this.selected].src : 'assets/images/out-of-stock-img.png';
+            let in_stock = true;
+            if (this.variants[this.selected].quantity_stock > 0) {
+                in_stock = true;
+            } else { in_stock = false; }
+            return in_stock ? this.variants[this.selected].src : 'assets/images/out-of-stock-img.png';
         },
         title() {
             return this.brand + " " + this.product;

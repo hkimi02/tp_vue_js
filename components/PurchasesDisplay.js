@@ -1,8 +1,10 @@
 app.component('purchases-display', {
     template: `
     <div class="alert" v-if="show_click==true">
-    <span class="material-symbols-sharp" @click="ChangeShowClick">close</span>
-            <h3 v-if="purchases==[] ">you havent buy anything yet </h3>
+    <div class="header">
+    <span class="material-symbols-sharp" @click="ChangeShowClick">close</span></div>
+            <div class="cart-body">
+            <h3 v-if="purchases.length==0">you havent buy anything yet </h3>
                 <div v-for="(purchase,index) in purchases" class="purshase-display">
                     <img :src="purchase.src" alt=" ">
                     <div>
@@ -14,9 +16,12 @@ app.component('purchases-display', {
                     <hr>
                     </div>
                 </div>
-                <button class="success button" @click="passConfirmedOrders">order now!</button>
-                <button class="danger button" @click="cancelOrder">cancel order</button>
-            </div>`,
+                </div>
+                <div class="footer"> 
+                <button class="success button" @click="passConfirmedOrders" :disabled="purchases.length==0">order now!</button>
+                <button class="danger button" @click="cancelOrder" :disabled="purchases==[]">cancel order</button>
+                </div>
+                </div>`,
 
     methods: {
         ChangeShowClick() {

@@ -4,16 +4,12 @@ app.component('review-list', {
     },
     template: `
     <div class="review-container">
-    <h3>comment</h3>
+    <h3>comment section</h3>
     <ul>
         <li v-for="(review,index) in reviews" :key="index">
-            {{review.name}} give us {{review.rating}} starts <br> "{{review.review}}" <br> recomndation : {{review.recomndation}}
+            {{review.name}} rated us <span class="fa fa-star checked" v-for="star in review.rating"></span><br> and he said :  "{{review.review}}" <br> recomndation : {{review.recomndation}}
         </li>
     </ul>
-   <!-- <button @click="addStarts"> show starts </button> 
-    <div style="display:flex;" v-for="star in starts">
-            {{star}}
-            </div>-->
 </div>
 `,
     data() {

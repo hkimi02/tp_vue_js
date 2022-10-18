@@ -22,8 +22,10 @@ const app = Vue.createApp({
         },
         change_show_review_form() {
             this.show_review_form = false;
+        },
+        initialiseCart() {
+            this.cart = 0;
         }
-
     },
     computed: {
 

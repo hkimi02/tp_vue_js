@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue Mastery</title>
     <!-- Import Styles -->
     <link rel="stylesheet" href="assets/style.css" />
@@ -23,10 +24,12 @@
         <button class="button" @click="show_review_form=true">
             leave us a review 
         </button>
-        <product-display :premium="premium" :cart="cart" @add-to-cart="AddToCart" :details="details" @remove-from-cart="RemoveFromCart" :show_click="show_click" @change-show-click="ChangeShowClick" :show_review_form="show_review_form" @change-show-review-form="change_show_review_form"></product-display>
+        <product-display :premium="premium" :cart="cart" @add-to-cart="AddToCart" :details="details" @remove-from-cart="RemoveFromCart" :show_click="show_click" @change-show-click="ChangeShowClick" :show_review_form="show_review_form" @change-show-review-form="change_show_review_form"
+            @initialise-cart="initialiseCart"></product-display>
     </div>
     <!-- Import Js -->
     <script src="js/main.js "></script>
+    <!-- Import components -->
     <script src="./components/productDisplay.js"></script>
     <script src="./components/ProductDetails.js"></script>
     <script src="./components/PurchasesDisplay.js"></script>
