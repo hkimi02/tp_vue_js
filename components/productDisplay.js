@@ -136,11 +136,15 @@ app.component('product-display', {
             this.reviews.push(review);
         },
         deleteFromPurchases(index) {
-            this.purchases.splice(index, 1);
+            // for (i = 0; i < (this.purchases[index]).quantity; i++) {
             this.RemoveFromCart();
+            //}
+            this.purchases.splice(index, 1);
         },
         passConfirmedOrders() {
-            this.orders = {...this.purchases };
+            //for (i = 0; i < this.purchases.length; i++) {
+            this.orders.push({...this.purchases });
+            //}
             this.purchases = [];
         }
     },
