@@ -9,11 +9,11 @@ app.component("connfirmed-orders", {
             <div class="order-details">
             <h3>product : {{o.name}}</h3>
             <h3> quantity : {{o.quantity}}</h3>
+            <h3>price : {{o.totalprice}}</h3>
             <h3>delivered in {{o.quantity}} day(s) <span class="material-symbols-sharp">
             local_shipping
             </span></h3>
         </div>
-            
             </div>
         </article>
     </div>
@@ -32,8 +32,7 @@ app.component("connfirmed-orders", {
                     total += (this.orders[i].totalPrice);
                 }
             console.log(total);
-            return total;
-         }*/
+            return total;}*/
     },
     computed: {
 
