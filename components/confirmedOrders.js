@@ -30,12 +30,13 @@ app.component("connfirmed-orders", {
         totalPrice(order) {
             if (order.length == 1) {
                 return order.price * order.quantity;
+            } else {
+                let total = 0;
+                for (i = 0; i < order.length; i++) {
+                    total += (order[i].price * order[i].quantity);
+                }
+                return total;
             }
-            let total = 0;
-            for (i = 0; i < order.length; i++) {
-                total += (order[i].price * order[i].quantity);
-            }
-            return total;
         }
     },
     computed: {

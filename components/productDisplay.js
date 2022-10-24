@@ -100,7 +100,6 @@ app.component('product-display', {
         AddToPurchases() {
             let test = false;
             let i = 0;
-
             if (this.purchases.length > 0) {
                 while (test == false && i < this.purchases.length) {
                     if (this.purchases[i].variantId == this.variants[this.selected].id && this.purchases[i].size == this.SelectedSize) {
@@ -112,7 +111,6 @@ app.component('product-display', {
                     }
                 }
                 if (!test) {
-
                     this.variants[this.selected].quantity_stock--;
                     let item = {...this.variants[this.selected] };
                     item.quantity = 1;
