@@ -300,7 +300,7 @@ ul {
     color: grey;
 }
 
-opacity {
+.opacity {
     opacity: 0.2;
 }
 
@@ -383,6 +383,16 @@ opacity {
         width: 100%;
     }
     .review-form {
-        width: 90%;
+        width: auto;
+        margin-left: -5%;
+    }
+    .confirmed-orders {
+        display: flex;
+        flex-direction: column;
+        width: 3rem;
+        margin-left: 20%;
+    }
+    .nav-bar {
+        width: 35rem;
     }
 }

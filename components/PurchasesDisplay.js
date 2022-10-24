@@ -35,6 +35,7 @@ app.component('purchases-display', {
         },
         passConfirmedOrders() {
             this.$emit("pass-confirmed-orders");
+            this.ChangeShowClick();
         },
         cancelOrder() {
             this.$emit("cancel-order");

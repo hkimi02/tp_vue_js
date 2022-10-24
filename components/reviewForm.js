@@ -48,6 +48,7 @@ app.component('reveiw-form', {
                 this.rating = null;
                 this.recomndation = null;
             }
+            this.change_show_review_form();
         },
         change_show_review_form() {
             this.$emit("change-show-review-form");

@@ -42,8 +42,8 @@ app.component('product-display', {
             tab: ["hdhdh", "dssd", "dssdds", "ssdd"],
             onsale: true,
             variants: [
-                { id: 2001, name: "vue js socks", price: 23.999, color: "green", src: "assets/images/socks_green.jpg", quantity: 0, quantity_stock: 10, size: 0 },
-                { id: 2002, name: "vue js socks", price: 23.999, color: "blue", src: "assets/images/socks_blue.jpg", quantity: 0, quantity_stock: 10, size: 0 },
+                { id: 2001, name: "vue js socks", price: 23.999, color: "green", src: "assets/images/socks_green.jpg", quantity: 0, quantity_stock: 20, size: 0, totalprice: 0 },
+                { id: 2002, name: "vue js socks", price: 23.999, color: "blue", src: "assets/images/socks_blue.jpg", quantity: 0, quantity_stock: 20, size: 0, totalprice: 0 },
             ],
 
             purchases: [],
@@ -105,6 +105,7 @@ app.component('product-display', {
                     if (this.purchases[i].variantId == this.variants[this.selected].id && this.purchases[i].size == this.SelectedSize) {
                         this.variants[this.selected].quantity_stock--;
                         this.purchases[i].quantity++;
+                        this.purchases[i].totalprice += this.purchases[i].price;
                         test = true;
                     } else {
                         i++;
@@ -116,6 +117,7 @@ app.component('product-display', {
                     item.quantity = 1;
                     item.variantId = this.variants[this.selected].id;
                     item.size = this.SelectedSize;
+                    item.totalprice += item.price;
                     this.purchases.push(item);
 
                 }
@@ -125,6 +127,7 @@ app.component('product-display', {
                 this.variants[this.selected].quantity_stock--;
                 item.variantId = this.variants[this.selected].id;
                 item.quantity++;
+                item.totalprice += item.price * item.quantity;
                 item.size = this.SelectedSize;
                 this.purchases.push(item);
 

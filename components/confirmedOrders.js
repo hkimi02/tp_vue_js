@@ -9,35 +9,31 @@ app.component("connfirmed-orders", {
             <div class="order-details">
             <h3>product : {{o.name}}</h3>
             <h3> quantity : {{o.quantity}}</h3>
-        </div>
-            <h3>total price : {{totalPrice(order)}}</h3>
-            <h3>delivered in {{order.quantity}} days <span class="material-symbols-sharp">
+            <h3>delivered in {{o.quantity}} day(s) <span class="material-symbols-sharp">
             local_shipping
-            </span></h3> 
+            </span></h3>
+        </div>
+            
             </div>
         </article>
     </div>
     `,
     data() {
-        return {
-
-        }
+        return {}
     },
     props: {
         orders: Array,
     },
     methods: {
-        totalPrice(order) {
-            if (order.length == 1) {
-                return order.price * order.quantity;
-            } else {
-                let total = 0;
-                for (i = 0; i < order.length; i++) {
-                    total += (order[i].price * order[i].quantity);
+        /* totalPrice() {
+            let total = 0;
+            let i = 0;
+                for (i = 0; i < this.orders.length; i++) {
+                    total += (this.orders[i].totalPrice);
                 }
-                return total;
-            }
-        }
+            console.log(total);
+            return total;
+         }*/
     },
     computed: {
 
