@@ -147,6 +147,9 @@ app.component('product-display', {
         passConfirmedOrders() {
             this.orders.push({...this.purchases });
             this.purchases = [];
+            // this.purchases.forEach(element => {
+            //     element.quantity = 0;
+            // });
             this.initialiseCart();
         },
         cancelOrder() {
