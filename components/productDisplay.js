@@ -71,8 +71,8 @@ app.component('product-display', {
         "add-to-cart",
         "change-show-click",
         "remove-from-cart",
-        "change-show-review-form"
-
+        "change-show-review-form",
+        "initialiseCart",
     ],
     methods: {
         AddToCart() {

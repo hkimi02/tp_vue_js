@@ -8,6 +8,9 @@ const app = Vue.createApp({
             show_review_form: false
         }
     },
+    emits: [
+
+    ],
     methods: {
         AddToCart() {
             this.cart++;
