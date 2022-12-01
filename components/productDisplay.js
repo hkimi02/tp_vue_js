@@ -31,15 +31,13 @@ app.component('product-display', {
     data() {
         return {
             brand: "vueJs",
-            product: 'chaussettes',
+            product: "socks",
             price: 23,
-            descripition: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, velit.',
+            descripition: 'a high quaality socks ',
             link: 'https://www.vuejs.org/',
-            hkimi: '',
             checked: [],
             in_stock: true,
             inventory: 100,
-            tab: ["hdhdh", "dssd", "dssdds", "ssdd"],
             onsale: true,
             variants: [
                 { id: 2001, name: "vue js socks", price: 23.999, color: "green", src: "assets/images/socks_green.jpg", quantity: 0, quantity_stock: 20, size: 0, totalprice: 0 },
@@ -71,8 +69,8 @@ app.component('product-display', {
         "add-to-cart",
         "change-show-click",
         "remove-from-cart",
-        "change-show-review-form"
-
+        "change-show-review-form",
+        "initialiseCart",
     ],
     methods: {
         AddToCart() {
@@ -161,11 +159,7 @@ app.component('product-display', {
     },
     computed: {
         imageLink() {
-            let in_stock = true;
-            if (this.variants[this.selected].quantity_stock > 0) {
-                in_stock = true;
-            } else { in_stock = false; }
-            return in_stock ? this.variants[this.selected].src : 'assets/images/out-of-stock-img.png';
+            return this.variants[this.selected].quantity_stock > 0 ? this.variants[this.selected].src : 'assets/images/out-of-stock-img.png';
         },
         title() {
             return this.brand + " " + this.product;
